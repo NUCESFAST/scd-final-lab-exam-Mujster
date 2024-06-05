@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - name: auth
+        image: dunkzilla10/auth:latest
+        ports:
+        - containerPort: 6050
+        - containerPort: 6050
+      nodeSelector:
+        kubernetes.io/hostname: labfinal

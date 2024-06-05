@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+      - name: event-bus
+        image: dunkzilla10/event-bus:latest
+        ports:
+        - containerPort: 6053
+        - containerPort: 6053
+      nodeSelector:
+        kubernetes.io/hostname: labfinal

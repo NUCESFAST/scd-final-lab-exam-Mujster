@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classroom-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: classroom
+  template:
+    metadata:
+      labels:
+        app: classroom
+    spec:
+      containers:
+      - name: classroom
+        image: dunkzilla10/classroom:latest
+        ports:
+        - containerPort: 6051
+        - containerPort: 6051
+      nodeSelector:
+        kubernetes.io/hostname: labfinal
